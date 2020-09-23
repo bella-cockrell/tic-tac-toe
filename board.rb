@@ -16,4 +16,8 @@ class Board
         ]
     end
 
+    def display_board
+        puts @game_board.join
+    end
+
 end

@@ -13,15 +13,20 @@ tic_tac_toe_string = [
     "       |     |     \n"
 ]
 
+
+
 describe Board do
+    test_board = Board.new
     context "player begins game" do
         it "initializes the board" do
-            test_board = Board.new
             expect(!!(test_board.game_board)).to eq(true)
         end
         it "sets the empty game board" do
-            test_board = Board.new
             expect(test_board.game_board).to eq(tic_tac_toe_string)
+        end
+        it "prints the board" do
+            expect(test_board.display_board).to eq(puts tic_tac_toe_string.join)
         end
     end
 end
+

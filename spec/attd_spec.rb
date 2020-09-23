@@ -21,9 +21,9 @@ tic_tac_toe_string = [
 
 describe "ATTD Board" do
     context "when the player starts the program" do
-        it "then the game displays a board" do
+        xit "then the game displays a board" do
             board = Board.new
-            expect(board.game_board).to eq(tic_tac_toe_string)
+            expect(board.display_board).to eq(tic_tac_toe_string)
         end
         
     end
