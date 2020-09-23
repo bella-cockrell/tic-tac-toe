@@ -1,3 +1,5 @@
+require_relative './board'
+
 class Game
     attr_accessor :welcome_message, :start_input
 
@@ -9,9 +11,14 @@ class Game
     def start_game
         puts @welcome_message
         @start_input = gets.chomp
+        if @start_input.upcase == "START"
+            board = Board.new
+            board.display_board
+        else start_game
+        end
     end
 
 end
 
-# game = Game.new
-# game.start_game
+game = Game.new
+game.start_game

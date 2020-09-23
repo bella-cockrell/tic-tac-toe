@@ -1,5 +1,18 @@
 require_relative '../game'
 
+tic_tac_toe_string = [
+    "    a     b     c  \n",
+    "       |     |     \n",
+    "1      |     |     \n",
+    "  _____|_____|_____\n",
+    "       |     |     \n",
+    "2      |     |     \n",
+    "  _____|_____|_____\n",
+    "       |     |     \n",
+    "3      |     |     \n",
+    "       |     |     \n"
+]
+
 describe Game do
     game = Game.new
     context "when player loads program" do
@@ -11,10 +24,16 @@ describe Game do
         end
         it "takes a player's input and checks that its start" do
             #Arrange
-            
-            #Act/Assert
             game.start_game
-            expect(game.start_input).to eq("Start")
+            #Act/Assert
+            expect(game.start_input.upcase).to eq("START")
+        end
+        it "after player input, print board" do
+            #Arrange
+            board = Board.new
+            #game.start_game
+            #Act/Assert
+            expect(game.start_game).to eq(tic_tac_toe_string)
         end
     end
 end
