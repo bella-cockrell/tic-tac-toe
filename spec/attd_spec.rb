@@ -17,13 +17,17 @@ tic_tac_toe_string = [
     "       |     |     \n"
 ]
     
-
-
 describe "ATTD Board" do
-    context "when the player starts the program" do
-        xit "then the game displays a board" do
-            board = Board.new
-            expect(board.display_board).to eq(tic_tac_toe_string)
+    context "when the player runs the program" do
+        xit "the game will output prompt, receive user input, then display an empty board" do
+            game = Game.new
+            prompt = "Welcome to the game, type 'start' to begin."
+            #Game outputs prompt
+            expect(game.start).to eq(prompt)
+            #Game gets user input
+            expect(game.start(input)).to eq("Start")
+            #Game outputs board
+            expect(game.start.board).to eq(Board.new.display_board)
         end
         
     end
