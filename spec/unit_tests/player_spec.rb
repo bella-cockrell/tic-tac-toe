@@ -6,7 +6,7 @@ describe Player do
           #Arrange
           player = Player.new
           #Act
-          input = ["hello", ""]
+          input = ["hello", "", "start"]
           input.each do |string|
             allow(player).to receive(:gets).and_return(string)
             #Assert
