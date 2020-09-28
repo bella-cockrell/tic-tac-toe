@@ -12,10 +12,6 @@ class Game
         self.get_init_input
     end
 
-
-# game = Game.new
-# game.start_game
-
     def welcome_message
         puts "Welcome to the game, type 'start' to begin."
     end
