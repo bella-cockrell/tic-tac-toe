@@ -5,6 +5,5 @@ class Game
     def main
         InitializeGame.new.run_setup  
     end
-    
 
 end
