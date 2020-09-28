@@ -3,6 +3,15 @@ require_relative './board'
 class Game
     attr_accessor :start_input
 
+    # welcome_message
+    # getplayerinput
+    # checkinput(player input)
+    # errormessage
+    # getplayerinput
+    # check
+
+
+
     def initialize
         @start_input = ""
     end
