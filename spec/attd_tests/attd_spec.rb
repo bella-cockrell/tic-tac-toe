@@ -1,9 +1,5 @@
 require_relative "../../game"
 
-# given a player wants to play the game  
-# when the player starts the program
-# then the game displays a board
-
 tic_tac_toe_string = [
     "    a     b     c  \n",
     "       |     |     \n",
@@ -17,7 +13,10 @@ tic_tac_toe_string = [
     "       |     |     \n"
 ]
     
-describe "ATTD Board" do
+describe "ATTD initialize" do
+    # given a player wants to play the game  
+    # when the player starts the program
+    # then the game displays a board
     context "when the player runs the program" do
         it "the game will output prompt, receive user input, then display an empty board" do
             #Arrange
@@ -26,6 +25,21 @@ describe "ATTD Board" do
         end  
     end
 end
+
+describe "ATTD player move" do
+    # given that the player wants to input a coord
+    # when the player inputs a  coord
+    # then board updates
+    context "when the player wants to input a coord" do
+        xit "the player inputs a coord, then the board updates" do
+            expect(game.move).to eq(true)
+        end
+    end
+end
+
+
+
+
 
 #     a     b     c  
 #        |     |     
