@@ -1,4 +1,4 @@
-require_relative '../board'
+require_relative '../../board'
 
 # given a player wants to play the game  
 # when the player starts the program

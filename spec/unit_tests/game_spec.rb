@@ -1,4 +1,4 @@
-require_relative '../game'
+require_relative '../../game'
 
 tic_tac_toe_string = [
     "    a     b     c  \n",
