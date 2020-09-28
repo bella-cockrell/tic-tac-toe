@@ -6,10 +6,12 @@ describe Player do
           #Arrange
           player = Player.new
           #Act
-          input = "hello"
-          allow(player).to receive(:gets).and_return(input)
-          #Assert
-          expect(player.receive_input).to eq(input)
+          input = ["hello", ""]
+          input.each do |string|
+            allow(player).to receive(:gets).and_return(string)
+            #Assert
+            expect(player.receive_input).to eq(string)
+          end
         end
     end
 end
