@@ -19,7 +19,7 @@ tic_tac_toe_string = [
     
 describe "ATTD Board" do
     context "when the player runs the program" do
-        it "the game will output prompt, receive user input, then display an empty board" do
+        xit "the game will output prompt, receive user input, then display an empty board" do
             game = Game.new
             input = "start"
             prompt = "Welcome to the game, type 'start' to begin.\n"
