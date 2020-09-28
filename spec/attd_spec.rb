@@ -19,15 +19,17 @@ tic_tac_toe_string = [
     
 describe "ATTD Board" do
     context "when the player runs the program" do
-        xit "the game will output prompt, receive user input, then display an empty board" do
+        it "the game will output prompt, receive user input, then display an empty board" do
             game = Game.new
-            prompt = "Welcome to the game, type 'start' to begin."
+            input = "start"
+            prompt = "Welcome to the game, type 'start' to begin.\n"
             #Game outputs prompt
-            expect(game.start).to eq(prompt)
+            expect{game.welcome_message}.to output(prompt).to_stdout
             #Game gets user input
-            expect(game.start(input)).to eq("Start")
+            allow(game).to receive(:gets).and_return("start\n")
+            expect(game.get_init_input_and_compare).to eq("START")
             #Game outputs board
-            expect(game.start.board).to eq(Board.new.display_board)
+            expect(game.start_game).to eq(Board.new.display_board)
         end
         
     end

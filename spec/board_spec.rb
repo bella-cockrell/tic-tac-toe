@@ -25,7 +25,7 @@ describe Board do
             expect(test_board.game_board).to eq(tic_tac_toe_string)
         end
         it "prints the board" do
-            expect(test_board.display_board).to eq(puts tic_tac_toe_string.join)
+            expect{test_board.display_board}.to output(tic_tac_toe_string.join).to_stdout
         end
     end
 end

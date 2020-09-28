@@ -16,9 +16,6 @@ class Game
 # game = Game.new
 # game.start_game
 
-
-
-
     def welcome_message
         puts "Welcome to the game, type 'start' to begin."
     end
@@ -33,6 +30,11 @@ class Game
         end
     end
 
-
+    def start_game
+        if get_init_input_and_compare == "START"
+            board = Board.new
+            board.display_board
+        end
+    end
 
 end

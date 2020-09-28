@@ -24,7 +24,7 @@ describe Game do
         end
         it "incase of invalid input - asks again" do
             allow(game).to receive(:gets).and_return("end\n", "START\n")
-            expect{game.get_init_input}.to output("Try again.\n").to_stdout
+            expect{game.get_init_input_and_compare}.to output("Try again.\n").to_stdout
         end
         it "incase of valid input - returns start" do
             allow(game).to receive(:gets).and_return("START\n")
@@ -34,15 +34,9 @@ describe Game do
             allow(game).to receive(:gets).and_return("start\n", "START\n")
             expect(game.get_init_input_and_compare).to eq("START")
         end
-
-        # xit "takes a player's input and checks that it's 'start'" do
-        #     allow(game).to receive(:gets).and_return("START")
-        #     expect(game.start_input.upcase).to eq("START")
-        # end
-        # xit "after player input, print board" do
-        #     board = Board.new
-        #     #game.start_game
-        #     expect(game.start_game).to eq(tic_tac_toe_string)
-        # end
+        it "after player input, print board" do
+            allow(game).to receive(:gets).and_return("start\n")
+            expect{game.start_game}.to output(tic_tac_toe_string.join).to_stdout
+        end
     end
 end
