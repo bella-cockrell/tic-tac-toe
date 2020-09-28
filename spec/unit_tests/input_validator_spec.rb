@@ -6,5 +6,9 @@ describe InputValidator do
             validator = InputValidator.new
             expect(validator.first_input("START")).to eq(true)
         end
+        it 'returns false if input is invalid' do
+            validator = InputValidator.new
+            expect(validator.first_input("bloop")).to eq(false)
+        end
     end
 end

@@ -1,5 +1,9 @@
 class InputValidator
     def first_input(player_input)
-        true
+        if player_input == "START"
+            return true
+        else
+            return false
+        end
     end
 end
