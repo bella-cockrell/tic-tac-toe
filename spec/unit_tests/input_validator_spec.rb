@@ -13,12 +13,24 @@ describe InputValidator do
         end
     end
     context "when the player inputs a move" do
+
+        player_input = {
+            "A 1" => true,
+            "top left" => false,
+            "B 2" => true,
+            "A 5" => false,
+            "3 C" => true,
+            "3, C" => true,
+            "3-C" => true,
+            "C" => false,
+            "3" => false
+        }
+
         it "checks that the input is valid" do
             validator = InputValidator.new
-            expect(validator.player_move_input("A 1")).to eq(true)
-            expect(validator.player_move_input("top left")).to eq(false)
-            expect(validator.player_move_input("B 2")).to eq(true)
-            # expect(validator.player_move_input("A 5")).to eq(false)
+            player_input.each do |key, value|
+                expect(validator.player_move_input(key)).to eq(value)
+            end
         end
     end
 end
