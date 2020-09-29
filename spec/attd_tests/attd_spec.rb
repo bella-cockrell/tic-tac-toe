@@ -1,4 +1,5 @@
 require_relative "../../game"
+require_relative "../../player"
 
 tic_tac_toe_string = [
     "    a     b     c  \n",
@@ -21,6 +22,8 @@ describe "ATTD initialize" do
         it "the game will output prompt, receive user input, then display an empty board" do
             #Arrange
             game = Game.new
+            player = Player.new
+            allow(player).to receive(:gets).and_return("start")
             expect(game.main).to eq(true)
         end  
     end
