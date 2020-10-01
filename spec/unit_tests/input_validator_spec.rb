@@ -1,4 +1,4 @@
-require_relative '../../input_validator'
+require_relative '../../lib/input_validator'
 
 describe InputValidator do
     context 'when player gives input after welcome message' do

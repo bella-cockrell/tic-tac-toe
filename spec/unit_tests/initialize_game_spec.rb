@@ -1,6 +1,6 @@
-require_relative "../../initialize_game"
-require_relative "../../player"
-require_relative "../../input_validator"
+require_relative "../../lib/initialize_game"
+require_relative "../../lib/player"
+require_relative "../../lib/input_validator"
 
 describe InitializeGame do
     context "when the game is loaded" do

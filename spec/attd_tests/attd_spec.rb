@@ -1,5 +1,5 @@
-require_relative "../../game"
-require_relative "../../player"
+require_relative "../../lib/game"
+require_relative "../../lib/player"
 
 tic_tac_toe_string = [
     "    a     b     c  \n",

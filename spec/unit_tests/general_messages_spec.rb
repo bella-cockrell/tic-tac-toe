@@ -1,4 +1,4 @@
-require_relative '../../general_messages'
+require_relative '../../lib/general_messages'
 
 describe GeneralMessages do
     context "when the method is called" do

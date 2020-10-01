@@ -1,2 +1,2 @@
-require_relative "../../game_loop.rb"
+require_relative "../../lib/game_loop.rb"
 
