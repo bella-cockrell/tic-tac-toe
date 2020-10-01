@@ -31,19 +31,19 @@ describe Board do
     context "when player inputs a move" do
         it "updates the game state" do
             test_board = Board.new
-            test_board.update_board(0, 0, "x")
+            test_board.update_board([0, 0], "x")
             expect(test_board.board_state).to eq([["x", " ", " "], [" ", " ", " "], [" ", " ", " "]])
             
         end
         it "updates the game state with a different move" do
             test_board = Board.new
-            test_board.update_board(0, 1, "x")
+            test_board.update_board([0, 1], "x")
             expect(test_board.board_state).to eq([[" ", "x", " "], [" ", " ", " "], [" ", " ", " "]])
         end
         it "updated the game with an additional move" do
             test_board = Board.new
-            test_board.update_board(0, 1, "x")
-            test_board.update_board(0, 2, "o")
+            test_board.update_board([0, 1], "x")
+            test_board.update_board([0, 2], "o")
             expect(test_board.board_state).to eq([[" ", "x", "o"], [" ", " ", " "], [" ", " ", " "]])
         end
     end

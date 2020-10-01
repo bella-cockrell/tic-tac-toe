@@ -21,8 +21,9 @@ class Board
         puts @game_board.join
     end
 
-    def update_board(row, col, player_symbol)
-        @board_state[row][col] = player_symbol
+    def update_board(coords, player_symbol)
+        @board_state[coords[0]
+        ][coords[1]] = player_symbol
     end
 
 end
