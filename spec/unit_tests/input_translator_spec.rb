@@ -3,28 +3,19 @@ require_relative '../../lib/input_translator'
 describe InputTranslator do
     context 'when player adds their input' do
 
-        input = {
-            "a 1" => [0, 0],
-            "a 2" => [1, 0],
-            # "B 2" => true,
-            # "A 5" => false,
-            # "3 C" => true,
-            # "3, C" => true,
-            # "3-C" => true,
-            # "C" => false,
-            # "3" => false
+        player_input = {
+            "A1" => [0, 0],
+            "B2" => [1, 1],
+            "C1" => [0,2],
+            "A1" => [0,0],
+            "C3" => [2,2]
         }
 
-
-
-
         it 'outputs input as coords for the game state' do
-            input = 'a 1'
-            expect(described_class.new.translate(input)).to eq([0, 0])
-        end
-        it 'outputs different input as coords for the game state' do
-            input = 'a 2'
-            expect(described_class.new.translate(input)).to eq([1, 0])
+            player_input.each do |input, output|
+                expect(described_class.new.convert(input)).to eq(output)
+            end
+            
         end
     end
 

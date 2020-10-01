@@ -1,10 +1,12 @@
 class InputTranslator
-    def translate(input)
-        if input == "a 1"
-            return [0,0]
-        else
-            return [1,0]
-        end
+
+    # def transalte(dfadfh)
+    #     standardizec
+    #     convert
+    # end
+
+    def convert(input)
+        return [input[1].to_i - 1, input[0].ord.to_i - 65]
     end
 
     def standardize(input)

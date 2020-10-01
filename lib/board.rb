@@ -22,8 +22,7 @@ class Board
     end
 
     def update_board(coords, player_symbol)
-        @board_state[coords[0]
-        ][coords[1]] = player_symbol
+        @board_state[coords[0]][coords[1]] = player_symbol
     end
 
 end
