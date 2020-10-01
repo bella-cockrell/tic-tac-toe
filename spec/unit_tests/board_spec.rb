@@ -16,8 +16,8 @@ tic_tac_toe_string = [
 
 
 describe Board do
-    test_board = Board.new
     context "player begins game" do
+        test_board = Board.new
         it "initializes the board" do
             expect(!!(test_board.game_board)).to eq(true)
         end
@@ -26,6 +26,25 @@ describe Board do
         end
         it "prints the board" do
             expect{test_board.display_board}.to output(tic_tac_toe_string.join).to_stdout
+        end
+    end
+    context "when player inputs a move" do
+        it "updates the game state" do
+            test_board = Board.new
+            test_board.update_board(0, 0, "x")
+            expect(test_board.board_state).to eq([["x", " ", " "], [" ", " ", " "], [" ", " ", " "]])
+            
+        end
+        it "updates the game state with a different move" do
+            test_board = Board.new
+            test_board.update_board(0, 1, "x")
+            expect(test_board.board_state).to eq([[" ", "x", " "], [" ", " ", " "], [" ", " ", " "]])
+        end
+        it "updated the game with an additional move" do
+            test_board = Board.new
+            test_board.update_board(0, 1, "x")
+            test_board.update_board(0, 2, "o")
+            expect(test_board.board_state).to eq([[" ", "x", "o"], [" ", " ", " "], [" ", " ", " "]])
         end
     end
 end
