@@ -21,12 +21,6 @@ describe Board do
         it "initializes the board" do
             expect(!!(test_board.game_board)).to eq(true)
         end
-        it "sets the empty game board" do
-            expect(test_board.game_board).to eq(tic_tac_toe_string)
-        end
-        it "prints the board" do
-            expect{test_board.display_board}.to output(tic_tac_toe_string.join).to_stdout
-        end
     end
     context "when player inputs a move" do
         it "updates the game state" do

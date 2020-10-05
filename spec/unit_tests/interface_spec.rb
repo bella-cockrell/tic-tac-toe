@@ -45,5 +45,25 @@ describe Interface do
             #Assert
             expect{Interface.display_board(board_state)}.to output(tic_tac_toe_string.join).to_stdout
         end
+
+        it 'outputs the board to the terminal' do
+          #Arrange
+          board_state = [[" ", "x", " "], [" ", " ", " "], [" ", " ", " "]]
+          tic_tac_toe_string = [
+            "    a     b     c  \n",
+            "       |     |     \n",
+            "1      |  x  |     \n",
+            "  _____|_____|_____\n",
+            "       |     |     \n",
+            "2      |     |     \n",
+            "  _____|_____|_____\n",
+            "       |     |     \n",
+            "3      |     |     \n",
+            "       |     |     \n"
+            ]
+            #Assert
+            expect{Interface.display_board(board_state)}.to output(tic_tac_toe_string.join).to_stdout
+        end
+
       end
 end
