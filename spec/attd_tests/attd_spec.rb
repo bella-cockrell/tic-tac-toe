@@ -26,7 +26,18 @@ describe "ATTD initialize" do
             allow(Interface).to receive(:receive_player_input).and_return("start")
             #Assert
             expect{controller.run_setup}.to output(controller.welcome_message + tic_tac_toe_string.join).to_stdout
-            #what do we really expect? Expect text output.
+        end  
+    end
+    context "when the player runs the program" do
+        it "the game will output prompt, receive wrong user input, asks again, then displays board" do
+            #Arrange
+            controller = Controller.new
+            welcome_message = controller.welcome_message
+            invalid_input_message = controller.invalid_input_message
+            #Act
+            allow(Interface).to receive(:receive_player_input).and_return("ergijhf", "start")
+            #Assert
+            expect{controller.run_setup}.to output(welcome_message + invalid_input_message + tic_tac_toe_string.join).to_stdout
         end  
     end
 end

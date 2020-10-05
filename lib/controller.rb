@@ -6,7 +6,7 @@ require_relative "./interface"
 
 class Controller
 
-    attr_accessor :welcome_message
+    attr_accessor :welcome_message, :invalid_input_message
 
     def initialize
         @welcome_message = "Welcome to the game, type 'start' to begin.\n"
