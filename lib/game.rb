@@ -9,3 +9,5 @@ class Game
             # => AIMove.new
     end
 end
+
+Game.new.main

@@ -2,6 +2,3 @@
 # request input
 # validates
 # loop
-
-
-

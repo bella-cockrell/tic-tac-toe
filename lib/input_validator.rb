@@ -17,3 +17,5 @@ class InputValidator
         end
     end
 end
+
+#create a function that clarifies what the Regex is doing, as Regex is hard to read

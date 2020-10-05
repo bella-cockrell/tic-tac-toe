@@ -25,6 +25,7 @@ describe "ATTD initialize" do
             player = Player.new
             allow(player).to receive(:gets).and_return("start")
             expect(game.main).to eq(true)
+            #what do we really expect? Expect text output.
         end  
     end
 end
