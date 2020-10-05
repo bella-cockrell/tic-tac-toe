@@ -1,5 +1,5 @@
-require_relative "../../lib/game"
-require_relative "../../lib/player"
+require_relative "../../lib/controller"
+
 
 tic_tac_toe_string = [
     "    a     b     c  \n",
@@ -21,10 +21,11 @@ describe "ATTD initialize" do
     context "when the player runs the program" do
         it "the game will output prompt, receive user input, then display an empty board" do
             #Arrange
-            game = Game.new
-            player = Player.new
-            allow(player).to receive(:gets).and_return("start")
-            expect(game.main).to eq(true)
+            controller = Controller.new
+            #Act
+            allow(Interface).to receive(:receive_player_input).and_return("start")
+            #Assert
+            expect{controller.run_setup}.to output(controller.welcome_message + tic_tac_toe_string.join).to_stdout
             #what do we really expect? Expect text output.
         end  
     end

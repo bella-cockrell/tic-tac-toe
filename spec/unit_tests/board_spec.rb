@@ -16,12 +16,6 @@ tic_tac_toe_string = [
 
 
 describe Board do
-    context "player begins game" do
-        test_board = Board.new
-        it "initializes the board" do
-            expect(!!(test_board.game_board)).to eq(true)
-        end
-    end
     context "when player inputs a move" do
         it "updates the game state" do
             test_board = Board.new

@@ -1,5 +1,5 @@
 class Board
-    attr_accessor :game_board, :board_state
+    attr_accessor :board_state
    
     def initialize
         @board_state = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
