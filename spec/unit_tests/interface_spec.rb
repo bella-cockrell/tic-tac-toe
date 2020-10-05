@@ -43,7 +43,7 @@ describe Interface do
             "       |     |     \n"
             ]
             #Assert
-            expect{Interface.display_board(board_state)}.to output(tic_tac_toe_string).to_stdout
+            expect{Interface.display_board(board_state)}.to output(tic_tac_toe_string.join).to_stdout
         end
       end
 end
