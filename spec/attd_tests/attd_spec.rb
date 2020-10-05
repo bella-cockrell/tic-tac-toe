@@ -24,8 +24,9 @@ describe "ATTD initialize" do
             controller = Controller.new
             #Act
             allow(Interface).to receive(:receive_player_input).and_return("start")
+            # regex_match = tic_tac_toe_string.match(/#{tic_tac_toe_string.join}/)
             #Assert
-            expect{controller.run_setup}.to output(controller.welcome_message + tic_tac_toe_string.join).to_stdout
+            expect{controller.run_setup}.to output(/#{tic_tac_toe_string.join}/).to_stdout
         end  
     end
     context "when the player runs the program" do
@@ -37,7 +38,7 @@ describe "ATTD initialize" do
             #Act
             allow(Interface).to receive(:receive_player_input).and_return("ergijhf", "start")
             #Assert
-            expect{controller.run_setup}.to output(welcome_message + invalid_input_message + tic_tac_toe_string.join).to_stdout
+            expect{controller.run_setup}.to output(/#{tic_tac_toe_string.join}/).to_stdout
         end  
     end
 end
@@ -47,8 +48,25 @@ describe "ATTD player move" do
     # when the player inputs a  coord
     # then board updates
     context "when the player wants to input a coord" do
-        xit "the player inputs a coord, then the board updates" do
-            expect(game.move).to eq(true)
+        it "the player inputs a coord, then the board updates" do
+            #Arrange
+            controller = Controller.new
+            tic_tac_toe_string = [
+            "    a     b     c  \n",
+            "       |     |     \n",
+            "1   x  |     |     \n",
+            "  _____|_____|_____\n",
+            "       |     |     \n",
+            "2      |     |     \n",
+            "  _____|_____|_____\n",
+            "       |     |     \n",
+            "3      |     |     \n",
+            "       |     |     \n"
+            ]
+            #Act
+            allow(Interface).to receive(:receive_player_input).and_return("A1")
+            #Assert
+            expect{controller.player_move}.to output(/#{tic_tac_toe_string.join}/).to_stdout
         end
     end
 end

@@ -5,11 +5,11 @@ class InputTranslator
     #     convert
     # end
 
-    def convert(input)
+    def self.convert(input)
         return [input[1].to_i - 1, input[0].ord.to_i - 65]
     end
 
-    def standardize(input)
+    def self.standardize(input)
         input_no_whitespace = input.gsub(/\s+|[,-]/, "")
         if input_no_whitespace[0].match(/[123]/)
             return input_no_whitespace.reverse

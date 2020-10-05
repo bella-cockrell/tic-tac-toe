@@ -13,7 +13,7 @@ describe InputTranslator do
 
         it 'outputs input as coords for the game state' do
             player_input.each do |input, output|
-                expect(described_class.new.convert(input)).to eq(output)
+                expect(described_class.convert(input)).to eq(output)
             end
             
         end
@@ -31,7 +31,7 @@ describe InputTranslator do
         }
         it 'returns standard output' do
             player_input.each do |input, output|
-                expect(described_class.new.standardize(input)).to eq(output)
+                expect(described_class.standardize(input)).to eq(output)
             end
         end
     end

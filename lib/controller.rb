@@ -15,17 +15,6 @@ class Controller
     end
     
     def run_setup
-        # GeneralMessages.new.welcome_message
-        # while true 
-        #     if InputValidator.new.first_input(Player.new.receive_input)
-        #         Board.new.display_board
-        #         return true
-        #     else
-        #         GeneralMessages.new.invalid_input_message
-        #     end
-        # end
-        
-
         Interface.print_message(@welcome_message)
         while true
             if InputValidator.first_input(Interface.receive_player_input)
@@ -35,7 +24,22 @@ class Controller
                 Interface.print_message(@invalid_input_message)
             end
         end
+    end
 
+    def player_move
+        Interface.print_message("Your move")
+        while true
+            move = Interface.receive_player_input
+            if InputValidator.player_move_input(move)
+                move = InputTranslator.standardize(move)
+                move = InputTranslator.convert(move)
+                #checker
+                board.update_board(move, "x") #fix this
+                break
+            else
+                Interface.print_message(@invalid_input_message)
+            end
+        end
     end
 
     
