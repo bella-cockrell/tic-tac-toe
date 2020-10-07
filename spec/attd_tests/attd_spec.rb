@@ -15,16 +15,12 @@ tic_tac_toe_string = [
 ]
     
 describe "ATTD initialize" do
-    # given a player wants to play the game  
-    # when the player starts the program
-    # then the game displays a board
     context "when the player runs the program" do
         it "the game will output prompt, receive user input, then display an empty board" do
             #Arrange
             controller = Controller.new
             #Act
             allow(Interface).to receive(:receive_player_input).and_return("start")
-            # regex_match = tic_tac_toe_string.match(/#{tic_tac_toe_string.join}/)
             #Assert
             expect{controller.run_setup}.to output(/#{tic_tac_toe_string.join}/).to_stdout
         end  
@@ -44,9 +40,6 @@ describe "ATTD initialize" do
 end
 
 describe "ATTD player move" do
-    # given that the player wants to input a coord
-    # when the player inputs a  coord
-    # then board updates
     context "when the player wants to input a coord" do
         it "the player inputs a coord, then the board updates" do
             #Arrange

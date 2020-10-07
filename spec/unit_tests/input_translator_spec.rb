@@ -24,6 +24,7 @@ describe InputTranslator do
             "A 1" => 'A1',
             "B 2" => 'B2',
             "C  1" => "C1",
+            "a 1" => 'A1',
             "A-1" => "A1",
             "3 C" => 'C3',
             "3, C" => 'C3',

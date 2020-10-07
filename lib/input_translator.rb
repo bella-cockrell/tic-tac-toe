@@ -10,6 +10,7 @@ class InputTranslator
     end
 
     def self.standardize(input)
+        input = input.upcase
         input_no_whitespace = input.gsub(/\s+|[,-]/, "")
         if input_no_whitespace[0].match(/[123]/)
             return input_no_whitespace.reverse
