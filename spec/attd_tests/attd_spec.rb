@@ -68,9 +68,10 @@ describe "ATTD player move" do
         it "asks for a new move" do
             #Arrange
             controller = Controller.new
-            move_again_message = "please input a different coordinate"
+            move_again_message = controller.move_already_made_message
             #Act
-            allow(Interface).to receive(:receive_player_input).and_return("A1", "A1")
+            allow(Interface).to receive(:receive_player_input).and_return("A1", "A1", "B1")
+            controller.player_move
             #Assert
             expect{controller.player_move}.to output(/#{move_again_message}/).to_stdout
         end
