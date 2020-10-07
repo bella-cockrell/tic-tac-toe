@@ -7,7 +7,6 @@ describe InputTranslator do
             "A1" => [0, 0],
             "B2" => [1, 1],
             "C1" => [0,2],
-            "A1" => [0,0],
             "C3" => [2,2]
         }
 

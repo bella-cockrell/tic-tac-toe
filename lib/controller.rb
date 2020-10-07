@@ -6,7 +6,7 @@ require_relative "./interface"
 
 class Controller
 
-    attr_accessor :welcome_message, :invalid_input_message
+    attr_accessor :welcome_message, :invalid_input_message, :your_move_message
 
     def initialize
         @welcome_message = "Welcome to the game, type 'start' to begin.\n"
@@ -52,7 +52,3 @@ class Controller
     # validates
     # loop
 end
-
-controller = Controller.new
-controller.run_setup
-controller.player_move

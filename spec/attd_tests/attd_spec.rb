@@ -57,9 +57,22 @@ describe "ATTD player move" do
             "       |     |     \n"
             ]
             #Act
-            allow(Interface).to receive(:receive_player_input).and_return("A1")
+            joined_board = tic_tac_toe_string.join
+            piped_board = joined_board.gsub('|','\|')
+            allow(Interface).to receive(:receive_player_input).and_return("a1")
             #Assert
-            expect{controller.player_move}.to output(/#{tic_tac_toe_string.join}/).to_stdout
+            expect{controller.player_move}.to output(/#{piped_board}/).to_stdout
+        end
+    end
+    context "when the player wants to input a coord and theres already an input there" do
+        it "asks for a new move" do
+            #Arrange
+            controller = Controller.new
+            move_again_message = "please input a different coordinate"
+            #Act
+            allow(Interface).to receive(:receive_player_input).and_return("A1", "A1")
+            #Assert
+            expect{controller.player_move}.to output(/#{move_again_message}/).to_stdout
         end
     end
 end
