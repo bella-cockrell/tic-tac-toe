@@ -1,4 +1,4 @@
-class CheckForWin
+class CheckForEndGame
 
     def self.check_for_loss(board_state)
         if check_rows(board_state)
@@ -7,6 +7,8 @@ class CheckForWin
             return "loss"
         elsif check_diagonals(board_state)
             return "loss"
+        elsif check_draw(board_state)
+            return "draw"
         else
             return "ongoing"
         end
@@ -39,6 +41,17 @@ class CheckForWin
             return true
         end
         false
+    end
+
+    def self.check_draw(board_state)
+        for i in 0..2
+            for j in 0..2
+                if board_state[i][j] == " "
+                    return false
+                end
+            end
+        end
+        return true
     end
 
 end

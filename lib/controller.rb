@@ -49,15 +49,19 @@ class Controller
         end
     end
 
-    def game_loop
-    #controller.run_setup
+    # def game_loop
+        
+    #     controller.run_setup
 
-    #while true
-        #controller.player_move
-        #if check_for_win == true; controller.end_game; break
-        #controller.AI_move
-        #if check_for_win == true; controller.end_game; break
-    #controller.end_game
-    end
+    #     while true
+    #         controller.player_move
+    #         if check_for_win.check_for_loss(board_state) == 'loss'
+                
+    #         end
+    #         controller.AI_move
+    #         if check_for_win == true; controller.end_game; break
+    #     controller.end_game
+    
+    # end
 
 end

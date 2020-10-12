@@ -1,6 +1,6 @@
-require_relative "../../lib/check_for_win"
+require_relative "../../lib/check_for_endgame"
 
-describe CheckForWin do
+describe CheckForEndGame do
     context "when the board has a row of o's (the AI wins)" do
         it "returns the string 'loss'" do
             board_state = [["o", "o", "o"], ["x", "x", " "], ["x", " ", " "]]
@@ -27,6 +27,12 @@ describe CheckForWin do
         it "returns the string loss" do
             board_state = [["o", "x", " "], ["x", "o", " "], ["x", " ", "o"]]
             expect(described_class.check_for_loss(board_state)).to eq("loss")
+        end
+    end
+    context "when the board is full and theres no winner" do
+        it "returns the string draw" do
+            board_state = [["x", "o", "o"], ["o", "x", "x"], ["x", "x", "o"]]
+            expect(described_class.check_for_loss(board_state)).to eq("draw")
         end
     end
 end
