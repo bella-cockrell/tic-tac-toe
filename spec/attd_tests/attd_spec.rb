@@ -76,6 +76,17 @@ describe "ATTD player move" do
             expect{controller.player_move}.to output(/#{move_again_message}/).to_stdout
         end
     end
+    xcontext "the player inputs an ending move" do
+        it "returns a draw message" do
+            #Arrange
+            controller = Controller.new
+            draw_message = controller.draw_message
+            #Act
+            allow(Interface).to receive(:receive_player_input).and_return("A1", "C3", "B2", "C1", "C2", "A2", "B1", "B3", "A3")
+            #Assert
+            expect{controller.player_move}.to output(/#{draw_message}/).to_stdout
+        end
+    end
 end
 
 

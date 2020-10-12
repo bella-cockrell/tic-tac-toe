@@ -6,13 +6,14 @@ require_relative "./interface"
 
 class Controller
 
-    attr_accessor :welcome_message, :invalid_input_message, :your_move_message, :move_already_made_message
+    attr_accessor :welcome_message, :invalid_input_message, :your_move_message, :move_already_made_message, :draw_message
 
     def initialize
         @welcome_message = "Welcome to the game, type 'start' to begin.\n"
         @invalid_input_message = "Invalid input, try again.\n"
         @your_move_message = "Your move\n"
         @move_already_made_message = "Move already done, input new move\n"
+        @draw_message = "Game draw\n"
         @board = Board.new
     end
     
