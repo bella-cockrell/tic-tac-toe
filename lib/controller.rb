@@ -8,7 +8,7 @@ class Controller
 
     attr_accessor :welcome_message, :invalid_input_message, :your_move_message, :move_already_made_message, :draw_message
 
-    def initialize
+    def initialize()
         @welcome_message = "Welcome to the game, type 'start' to begin.\n"
         @invalid_input_message = "Invalid input, try again.\n"
         @your_move_message = "Your move\n"

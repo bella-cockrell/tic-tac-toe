@@ -1,6 +1,7 @@
 require_relative '../../lib/input_translator'
 
 describe InputTranslator do
+    input_translator = InputTranslator.new
     context 'when player adds their input' do
 
         player_input = {
@@ -12,7 +13,7 @@ describe InputTranslator do
 
         it 'outputs input as coords for the game state' do
             player_input.each do |input, output|
-                expect(described_class.convert(input)).to eq(output)
+                expect(input_translator.convert(input)).to eq(output)
             end
             
         end
@@ -31,7 +32,7 @@ describe InputTranslator do
         }
         it 'returns standard output' do
             player_input.each do |input, output|
-                expect(described_class.standardize(input)).to eq(output)
+                expect(input_translator.standardize(input)).to eq(output)
             end
         end
     end

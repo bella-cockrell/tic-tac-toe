@@ -28,4 +28,23 @@ describe InputController do
             expect(input_controller.input_processor).to eq([1, 1])
         end
     end
+    context 'when player gives input after welcome message' do
+        #Arrange
+        player_input = PlayerInput.new
+        input_validator = InputValidator.new
+        input_translator = InputTranslator.new
+        input_controller = InputController.new(player_input, input_validator, input_translator)
+        it 'returns true if input is valid' do
+            #Act
+            allow(player_input).to receive(:receive_player_input).and_return("start")
+            #Assert
+            expect(input_controller.start_game_input).to eq(true)
+        end
+        it 'returns false if input is invalid' do
+            #Act
+            allow(player_input).to receive(:receive_player_input).and_return("erifheskljbf")
+            #Assert
+            expect(input_controller.start_game_input).to eq(false)
+        end
+    end
 end

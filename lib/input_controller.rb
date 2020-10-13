@@ -6,6 +6,11 @@ class InputController
         @input_translator = input_translator
     end
 
+    def start_game_input
+        start_input = @player_input.receive_player_input
+        @input_validator.first_input(start_input)
+    end
+
     def input_processor
         move = @player_input.receive_player_input
         if @input_validator.player_move_input(move)
