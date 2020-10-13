@@ -29,7 +29,7 @@ class Controller
         end
     end
 
-    def player_move
+    def player_move(player_symbol = 'x')
         Interface.print_message(@your_move_message)
         while true
             move = Interface.receive_player_input
@@ -37,7 +37,7 @@ class Controller
                 move = InputTranslator.standardize(move)
                 move = InputTranslator.convert(move)
                 if InputChecker.check(move, @board.board_state)
-                    @board.update_board(move, "x")
+                    @board.update_board(move, player_symbol)
                     Interface.display_board(@board.board_state)
                     break
                 else
@@ -49,19 +49,25 @@ class Controller
         end
     end
 
-    # def game_loop
+    def game_loop
         
-    #     controller.run_setup
+        run_setup()
 
-    #     while true
-    #         controller.player_move
-    #         if check_for_win.check_for_loss(board_state) == 'loss'
-                
-    #         end
-    #         controller.AI_move
-    #         if check_for_win == true; controller.end_game; break
-    #     controller.end_game
+        while true
+            player_move('x')
+            if CheckForEndGame.check_for_loss(board_state) == 'loss'
+                puts 'win'
+            elsif CheckForEndGame.check_for_loss(board_state) == 'draw'
+                puts 'draw'
+            end
+            player_move('o')
+            if CheckForEndGame.check_for_loss(board_state) == 'loss'
+                puts 'win'
+            elsif CheckForEndGame.check_for_loss(board_state) == 'draw'
+                puts 'draw'
+            end
+        end
     
-    # end
+    end
 
 end
