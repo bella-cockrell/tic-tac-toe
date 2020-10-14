@@ -14,7 +14,7 @@ tic_tac_toe_string = [
     "       |     |     \n"
 ]
     
-describe "ATTD initialize" do
+describe "ATDD initialize" do
     context "when the player runs the program" do
         it "the game will output prompt, receive user input, then display an empty board" do
             #Arrange
@@ -49,7 +49,7 @@ describe "ATTD initialize" do
     end
 end
 
-describe "ATTD player move" do
+describe "ATDD player move" do
     context "when the player wants to input a coord" do
         it "the player inputs a coord, then the board updates" do
             #Arrange
@@ -76,24 +76,38 @@ describe "ATTD player move" do
         end
     end
     context "when the player wants to input a coord and theres already an input there" do
-        it "asks for a new move" do
+        it "double test: asks for a new move" do
             #Arrange
-            controller = Controller.new
+            double_input_controller = double("Input_Controller")
+            controller = Controller.new(double_input_controller)
             move_again_message = controller.move_already_made_message
             #Act
-            allow(Interface).to receive(:receive_player_input).and_return("A1", "A1", "B1")
+            allow(double_input_controller).to receive(:input_processor).and_return([0, 0], [0, 0], [0, 1])
             controller.player_move
             #Assert
             expect{controller.player_move}.to output(/#{move_again_message}/).to_stdout
         end
+        it "spy test: asks for a new move" do
+            #Arrange
+            spy_input_controller = spy("Input_Controller")
+            controller = Controller.new(spy_input_controller)
+            #Act
+            allow(spy_input_controller).to receive(:input_processor).and_return([0, 0], [0, 0], [0, 1])
+            controller.player_move
+            controller.player_move
+            #Assert
+            expect(spy_input_controller).to have_received(:input_processor).exactly(3).times
+        end  
     end
-    xcontext "the player inputs an ending move" do
+    context "the player inputs an ending move" do
         it "returns a draw message" do
             #Arrange
-            controller = Controller.new
+            double_input_controller = double("Input_Controller")
+            controller = Controller.new(double_input_controller)
             draw_message = controller.draw_message
             #Act
-            allow(STDIN).to receive(:gets).and_return("A1", "C3", "B2", "C1", "C2", "A2", "B1", "B3", "A3")
+            allow(double_input_controller).to receive(:start_game_input).and_return(true)
+            allow(double_input_controller).to receive(:input_processor).and_return([0,0], [2,2], [1,1], [0,2], [1,2], [1,0], [0,1], [2,1], [2,0])
             #Assert
             expect{controller.game_loop}.to output(/#{draw_message}/).to_stdout
         end

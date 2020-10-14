@@ -1,6 +1,8 @@
 require_relative "./board"
 require_relative "./interface"
 require_relative "./input_checker"
+require_relative "./check_for_endgame"
+
 
 
 class Controller
@@ -53,16 +55,20 @@ class Controller
 
         while true
             player_move('x')
-            if CheckForEndGame.check_for_loss(board_state) == 'loss'
+            if CheckForEndGame.check_for_loss(@board.board_state) == 'loss'
                 puts 'win'
-            elsif CheckForEndGame.check_for_loss(board_state) == 'draw'
-                puts 'draw'
+                break
+            elsif CheckForEndGame.check_for_loss(@board.board_state) == 'draw'
+                Interface.print_message(@draw_message)
+                break
             end
             player_move('o')
-            if CheckForEndGame.check_for_loss(board_state) == 'loss'
+            if CheckForEndGame.check_for_loss(@board.board_state) == 'loss'
                 puts 'win'
-            elsif CheckForEndGame.check_for_loss(board_state) == 'draw'
-                puts 'draw'
+                break
+            elsif CheckForEndGame.check_for_loss(@board.board_state) == 'draw'
+                Interface.print_message(@draw_message)
+                break
             end
         end
     
