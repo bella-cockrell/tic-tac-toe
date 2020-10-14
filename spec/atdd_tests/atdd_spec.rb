@@ -1,5 +1,6 @@
 require_relative "../../lib/controller"
-require_relative "../../lib/input_controller"
+require_relative "../../lib/input/input_controller"
+require_relative "../../lib/board"
 
 tic_tac_toe_string = [
     "    a     b     c  \n",
@@ -19,7 +20,8 @@ describe "ATDD initialize" do
         it "the game will output prompt, receive user input, then display an empty board" do
             #Arrange
             double_input_controller = double("Input_Controller")
-            controller = Controller.new(double_input_controller)
+            board = Board.new
+            controller = Controller.new(double_input_controller, board)
             #Act
             allow(double_input_controller).to receive(:start_game_input).and_return(true)
             #Assert
@@ -30,7 +32,8 @@ describe "ATDD initialize" do
         it "double test: the game will output prompt, receive wrong user input, asks again, then displays board" do
             #Arrange
             double_input_controller = double("Input_Controller")
-            controller = Controller.new(double_input_controller)
+            board = Board.new
+            controller = Controller.new(double_input_controller, board)
             #Act
             allow(double_input_controller).to receive(:start_game_input).and_return(false, true)
             #Assert
@@ -39,7 +42,8 @@ describe "ATDD initialize" do
         it "spy test: the game will output prompt, receive wrong user input, asks again, then displays board" do
             #Arrange
             spy_input_controller = spy("Input_Controller")
-            controller = Controller.new(spy_input_controller)
+            board = Board.new
+            controller = Controller.new(spy_input_controller, board)
             #Act
             allow(spy_input_controller).to receive(:start_game_input).and_return(false, true)
             controller.run_setup
@@ -54,7 +58,8 @@ describe "ATDD player move" do
         it "the player inputs a coord, then the board updates" do
             #Arrange
             double_input_controller = double("Input_Controller")
-            controller = Controller.new(double_input_controller)
+            board = Board.new
+            controller = Controller.new(double_input_controller, board)
             tic_tac_toe_string = [
             "    a     b     c  \n",
             "       |     |     \n",
@@ -79,7 +84,8 @@ describe "ATDD player move" do
         it "double test: asks for a new move" do
             #Arrange
             double_input_controller = double("Input_Controller")
-            controller = Controller.new(double_input_controller)
+            board = Board.new
+            controller = Controller.new(double_input_controller, board)
             move_again_message = controller.move_already_made_message
             #Act
             allow(double_input_controller).to receive(:input_processor).and_return([0, 0], [0, 0], [0, 1])
@@ -90,7 +96,8 @@ describe "ATDD player move" do
         it "spy test: asks for a new move" do
             #Arrange
             spy_input_controller = spy("Input_Controller")
-            controller = Controller.new(spy_input_controller)
+            board = Board.new
+            controller = Controller.new(spy_input_controller, board)
             #Act
             allow(spy_input_controller).to receive(:input_processor).and_return([0, 0], [0, 0], [0, 1])
             controller.player_move
@@ -103,7 +110,8 @@ describe "ATDD player move" do
         it "returns a draw message" do
             #Arrange
             double_input_controller = double("Input_Controller")
-            controller = Controller.new(double_input_controller)
+            board = Board.new
+            controller = Controller.new(double_input_controller, board)
             draw_message = controller.draw_message
             #Act
             allow(double_input_controller).to receive(:start_game_input).and_return(true)
