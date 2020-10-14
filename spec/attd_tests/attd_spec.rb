@@ -1,5 +1,5 @@
 require_relative "../../lib/controller"
-
+require_relative "../../lib/input_controller"
 
 tic_tac_toe_string = [
     "    a     b     c  \n",
@@ -18,9 +18,10 @@ describe "ATTD initialize" do
     context "when the player runs the program" do
         it "the game will output prompt, receive user input, then display an empty board" do
             #Arrange
-            controller = Controller.new
+            double_input_controller = double("Input_Controller")
+            controller = Controller.new(double_input_controller)
             #Act
-            allow(Interface).to receive(:receive_player_input).and_return("start")
+            allow(double_input_controller).to receive(:start_game_input).and_return(true)
             #Assert
             expect{controller.run_setup}.to output(/#{tic_tac_toe_string.join}/).to_stdout
         end  
@@ -28,7 +29,6 @@ describe "ATTD initialize" do
     context "when the player runs the program" do
         it "the game will output prompt, receive wrong user input, asks again, then displays board" do
             #Arrange
-            controller = Controller.new
             welcome_message = controller.welcome_message
             invalid_input_message = controller.invalid_input_message
             #Act

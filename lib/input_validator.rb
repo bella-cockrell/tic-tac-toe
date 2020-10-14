@@ -16,7 +16,7 @@ class InputValidator
             return false
         end
     end
-
+    #REMOVE THE STATIC METHODS ABOVE
     def first_input(player_input)
         if player_input.upcase == "START"
             return true
