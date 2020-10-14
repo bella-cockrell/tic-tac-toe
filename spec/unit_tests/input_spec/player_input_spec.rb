@@ -1,4 +1,4 @@
-require_relative "../../lib/player_input"
+require_relative "../../../lib/input/player_input"
 
 describe PlayerInput do
     context 'when the system asks for input' do

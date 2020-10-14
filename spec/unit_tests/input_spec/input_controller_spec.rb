@@ -1,7 +1,7 @@
-require_relative "../../lib/input_controller"
-require_relative "../../lib/player_input"
-require_relative "../../lib/input_validator"
-require_relative "../../lib/input_translator"
+require_relative "../../../lib/input/input_controller"
+require_relative "../../../lib/input/player_input"
+require_relative "../../../lib/input/input_validator"
+require_relative "../../../lib/input/input_translator"
 
 describe InputController do
     context "when asked for input" do

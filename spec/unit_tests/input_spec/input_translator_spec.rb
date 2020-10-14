@@ -1,4 +1,4 @@
-require_relative '../../lib/input_translator'
+require_relative '../../../lib/input/input_translator'
 
 describe InputTranslator do
     input_translator = InputTranslator.new
