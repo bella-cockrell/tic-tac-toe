@@ -27,14 +27,24 @@ describe "ATTD initialize" do
         end  
     end
     context "when the player runs the program" do
-        it "the game will output prompt, receive wrong user input, asks again, then displays board" do
+        it "double test: the game will output prompt, receive wrong user input, asks again, then displays board" do
             #Arrange
-            welcome_message = controller.welcome_message
-            invalid_input_message = controller.invalid_input_message
+            double_input_controller = double("Input_Controller")
+            controller = Controller.new(double_input_controller)
             #Act
-            allow(Interface).to receive(:receive_player_input).and_return("ergijhf", "start")
+            allow(double_input_controller).to receive(:start_game_input).and_return(false, true)
             #Assert
             expect{controller.run_setup}.to output(/#{tic_tac_toe_string.join}/).to_stdout
+        end          
+        it "spy test: the game will output prompt, receive wrong user input, asks again, then displays board" do
+            #Arrange
+            spy_input_controller = spy("Input_Controller")
+            controller = Controller.new(spy_input_controller)
+            #Act
+            allow(spy_input_controller).to receive(:start_game_input).and_return(false, true)
+            controller.run_setup
+            #Assert
+            expect(spy_input_controller).to have_received(:start_game_input).exactly(2).times
         end  
     end
 end
@@ -43,7 +53,8 @@ describe "ATTD player move" do
     context "when the player wants to input a coord" do
         it "the player inputs a coord, then the board updates" do
             #Arrange
-            controller = Controller.new
+            double_input_controller = double("Input_Controller")
+            controller = Controller.new(double_input_controller)
             tic_tac_toe_string = [
             "    a     b     c  \n",
             "       |     |     \n",
@@ -59,7 +70,7 @@ describe "ATTD player move" do
             #Act
             joined_board = tic_tac_toe_string.join
             piped_board = joined_board.gsub('|','\|')
-            allow(Interface).to receive(:receive_player_input).and_return("a1")
+            allow(double_input_controller).to receive(:input_processor).and_return([0, 0])
             #Assert
             expect{controller.player_move}.to output(/#{piped_board}/).to_stdout
         end

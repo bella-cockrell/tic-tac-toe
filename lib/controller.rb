@@ -1,7 +1,6 @@
 require_relative "./board"
-require_relative "./input_validator"
-require_relative "./input_translator"
 require_relative "./interface"
+require_relative "./input_checker"
 
 
 class Controller
@@ -30,25 +29,11 @@ class Controller
         end
     end
 
-    def run_setup_v2
-        Interface.print_message(@welcome_message)
-        while true
-            if InputValidator.first_input(Interface.receive_player_input)
-                Interface.display_board(@board.board_state)
-                break
-            else
-                Interface.print_message(@invalid_input_message)
-            end
-        end
-    end
-
     def player_move(player_symbol = 'x')
         Interface.print_message(@your_move_message)
         while true
-            move = Interface.receive_player_input
-            if InputValidator.player_move_input(move)
-                move = InputTranslator.standardize(move)
-                move = InputTranslator.convert(move)
+            move = @input_controller.input_processor
+            if move != false
                 if InputChecker.check(move, @board.board_state)
                     @board.update_board(move, player_symbol)
                     Interface.display_board(@board.board_state)
