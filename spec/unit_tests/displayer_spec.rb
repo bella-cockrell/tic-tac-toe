@@ -1,15 +1,15 @@
-require_relative '../../lib/interface'
+require_relative '../../lib/displayer'
 
-describe Interface do
+describe Displayer do
     context 'when the system asks for input' do
         it 'takes player input' do
           #Arrange
           input = ["hello", "", "start"]
           #Act
           input.each do |string|
-            allow(Interface).to receive(:gets).and_return(string)
+            allow(Displayer).to receive(:gets).and_return(string)
             #Assert
-            expect(Interface.receive_player_input).to eq(string)
+            expect(Displayer.receive_player_input).to eq(string)
           end
         end
     end
@@ -21,7 +21,7 @@ describe Interface do
         #Act
         input.each do |string|
           #Assert
-          expect{Interface.print_message(string)}.to output(string).to_stdout
+          expect{Displayer.print_message(string)}.to output(string).to_stdout
         end
       end
     end
@@ -43,7 +43,7 @@ describe Interface do
             "       |     |     \n"
             ]
             #Assert
-            expect{Interface.display_board(board_state)}.to output(tic_tac_toe_string.join).to_stdout
+            expect{Displayer.display_board(board_state)}.to output(tic_tac_toe_string.join).to_stdout
         end
 
         it 'outputs one "x" in b1' do
@@ -62,7 +62,7 @@ describe Interface do
             "       |     |     \n"
             ]
             #Assert
-            expect{Interface.display_board(board_state)}.to output(tic_tac_toe_string.join).to_stdout
+            expect{Displayer.display_board(board_state)}.to output(tic_tac_toe_string.join).to_stdout
         end
 
         it 'outputs the filled board' do
@@ -81,7 +81,7 @@ describe Interface do
             "       |     |     \n"
             ]
             #Assert
-            expect{Interface.display_board(board_state)}.to output(tic_tac_toe_string.join).to_stdout
+            expect{Displayer.display_board(board_state)}.to output(tic_tac_toe_string.join).to_stdout
         end
 
       end

@@ -1,4 +1,4 @@
-class Interface
+class Displayer
 
     def self.receive_player_input
         string = gets.chomp
@@ -9,7 +9,6 @@ class Interface
         puts string
     end
 
-    #display board
     def self.display_board(board_state)
         tic_tac_toe_string = [
             "    a     b     c  \n",
