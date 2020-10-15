@@ -6,7 +6,7 @@ class Controller
 
     attr_accessor :welcome_message, :invalid_input_message, :your_move_message, :move_already_made_message, :draw_message
 
-    def initialize(input_controller, board)
+    def initialize(input_controller, board, ai_input)
         @welcome_message = "Welcome to the game, type 'start' to begin.\n"
         @invalid_input_message = "Invalid input, try again.\n"
         @your_move_message = "Your move\n"
@@ -14,6 +14,7 @@ class Controller
         @draw_message = "Game draw\n"
         @board = board
         @input_controller = input_controller
+        @ai_input = ai_input
     end
 
     def run_setup
@@ -46,6 +47,12 @@ class Controller
         end
     end
 
+    def get_ai_move(player_symbol = 'o')
+        move = @ai_input.ai_move(@board.board_state)
+        @board.update_board(move, player_symbol)
+        Displayer.display_board(@board.board_state)
+    end
+
     def game_loop
         
         run_setup()
@@ -59,7 +66,7 @@ class Controller
                 Displayer.print_message(@draw_message)
                 break
             end
-            player_move('o')
+            get_ai_move('o')
             if CheckForEndGame.check_for_loss(@board.board_state) == 'loss'
                 puts 'win'
                 break

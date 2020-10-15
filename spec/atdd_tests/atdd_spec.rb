@@ -21,7 +21,8 @@ describe "ATDD initialize" do
             #Arrange
             double_input_controller = double("Input_Controller")
             board = Board.new
-            controller = Controller.new(double_input_controller, board)
+            double_ai_input = double("AI Input")
+            controller = Controller.new(double_input_controller, board, double_ai_input)
             #Act
             allow(double_input_controller).to receive(:start_game_input).and_return(true)
             #Assert
@@ -33,7 +34,8 @@ describe "ATDD initialize" do
             #Arrange
             double_input_controller = double("Input_Controller")
             board = Board.new
-            controller = Controller.new(double_input_controller, board)
+            double_ai_input = double("AI Input")
+            controller = Controller.new(double_input_controller, board, double_ai_input)
             #Act
             allow(double_input_controller).to receive(:start_game_input).and_return(false, true)
             #Assert
@@ -43,7 +45,8 @@ describe "ATDD initialize" do
             #Arrange
             spy_input_controller = spy("Input_Controller")
             board = Board.new
-            controller = Controller.new(spy_input_controller, board)
+            double_ai_input = double("AI Input")
+            controller = Controller.new(spy_input_controller, board, double_ai_input)
             #Act
             allow(spy_input_controller).to receive(:start_game_input).and_return(false, true)
             controller.run_setup
@@ -59,7 +62,8 @@ describe "ATDD player move" do
             #Arrange
             double_input_controller = double("Input_Controller")
             board = Board.new
-            controller = Controller.new(double_input_controller, board)
+            double_ai_input = double("AI Input")
+            controller = Controller.new(double_input_controller, board, double_ai_input)
             tic_tac_toe_string = [
             "    a     b     c  \n",
             "       |     |     \n",
@@ -85,7 +89,8 @@ describe "ATDD player move" do
             #Arrange
             double_input_controller = double("Input_Controller")
             board = Board.new
-            controller = Controller.new(double_input_controller, board)
+            double_ai_input = double("AI Input")
+            controller = Controller.new(double_input_controller, board, double_ai_input)
             move_again_message = controller.move_already_made_message
             #Act
             allow(double_input_controller).to receive(:input_processor).and_return([0, 0], [0, 0], [0, 1])
@@ -97,7 +102,8 @@ describe "ATDD player move" do
             #Arrange
             spy_input_controller = spy("Input_Controller")
             board = Board.new
-            controller = Controller.new(spy_input_controller, board)
+            double_ai_input = double("AI Input")
+            controller = Controller.new(spy_input_controller, board, double_ai_input)
             #Act
             allow(spy_input_controller).to receive(:input_processor).and_return([0, 0], [0, 0], [0, 1])
             controller.player_move
@@ -110,14 +116,47 @@ describe "ATDD player move" do
         it "returns a draw message" do
             #Arrange
             double_input_controller = double("Input_Controller")
+            double_ai_input = double("AI Input")
             board = Board.new
-            controller = Controller.new(double_input_controller, board)
+            controller = Controller.new(double_input_controller, board, double_ai_input)
             draw_message = controller.draw_message
             #Act
+            allow(double_input_controller).to receive(:input_processor).and_return([0,0], [1,1], [1,2], [0,1], [2,0])
+            allow(double_ai_input).to receive(:ai_move).and_return([2,2], [0,2], [1,0], [2,1])
             allow(double_input_controller).to receive(:start_game_input).and_return(true)
-            allow(double_input_controller).to receive(:input_processor).and_return([0,0], [2,2], [1,1], [0,2], [1,2], [1,0], [0,1], [2,1], [2,0])
             #Assert
             expect{controller.game_loop}.to output(/#{draw_message}/).to_stdout
+        end
+    end
+end
+
+describe "ATDD AI" do
+    context "when the player places x in the corner or on the sides" do
+        it "the ai will go in the middle" do
+            #arrange
+            double_input_controller = double("Input_Controller")
+            board = Board.new
+            ai_player = AI.new
+            controller = Controller.new(double_input_controller, board, ai_player)
+            tic_tac_toe_string = [
+                "    a     b     c  \n",
+                "       |     |     \n",
+                "1   x  |     |     \n",
+                "  _____|_____|_____\n",
+                "       |     |     \n",
+                "2      |  o  |     \n",
+                "  _____|_____|_____\n",
+                "       |     |     \n",
+                "3      |     |     \n",
+                "       |     |     \n"
+                ]
+            joined_board = tic_tac_toe_string.join
+            piped_board = joined_board.gsub('|','\|')
+            #act
+            allow(double_input_controller).to receive(:start_game_input).and_return(true)
+            allow(double_input_controller).to receive(:input_processor).and_return([0,0])
+            #assert
+            expect{controller.game_loop}.to output(/#{piped_board}/).to_stdout
         end
     end
 end
