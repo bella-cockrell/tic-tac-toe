@@ -130,7 +130,7 @@ describe "ATDD player move" do
     end
 end
 
-describe "ATDD AI" do
+xdescribe "ATDD AI" do
     context "when the player places x in the corner or on the sides" do
         it "the ai will go in the middle" do
             #arrange
