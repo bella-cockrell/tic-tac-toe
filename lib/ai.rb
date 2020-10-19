@@ -15,6 +15,7 @@ class AI
                 end
             end
         end
+        thinking_bot
         return stored_move
     end
     
@@ -108,43 +109,8 @@ class AI
         return true
     end
 
-
-
-=begin
-    minimax(board, maximising_player)
-    if board_state is complete
-        return -1, 0, 1 ---------- value finder, checked xs or os in a row move_value_calculator
+    def thinking_bot
+        puts "I AM THINKING"
+        sleep 1
     end
-
-    if max_player
-        loop through positions
-            make child board ---------
-            eval = minimax(child board, false)
-            maxEval = max(eval, maxEval)
-        return maxEval
-    end
-
-    if min_player
-        loop through pos
-            make child board
-            eval = minimax(child board, true)
-            minEval = min(eval, maxEval)
-        return minEval
-    end
-=end
-
-
-
-    
-
-    
 end
-
-# easy AI -- look at available moves one level down
-#     [["x", "x", " "], ["o", "o", "+o"], [" ", " ", " "]] => Float::INFINITY
-#     [["x", "x", "+o"], [" ", " ", " "], [" ", " ", " "]] => 1
-#     [["x", "x", " "], ["+o", " ", " "], [" ", " ", " "]] => 0
-
-# medium AI -- look at available moves two levels down
-
-# hard AI -- look at available moves all levels down
