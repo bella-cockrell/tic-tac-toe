@@ -11,7 +11,7 @@ class Controller
         @invalid_input_message = "Invalid input, try again.\n"
         @your_move_message = "Your move\n"
         @move_already_made_message = "Move already done, input new move\n"
-        @draw_message = "Game draw\n"
+        @draw_message = "THE GAME IS A DRAW -- YOU CANNOT DEFEAT ME\n"
         @board = board
         @input_controller = input_controller
         @ai_input = ai_input
@@ -60,7 +60,7 @@ class Controller
         while true
             player_move('x')
             if CheckForEndGame.check_for_loss(@board.board_state) == 'loss'
-                puts 'win'
+                puts 'YOU WON :('
                 break
             elsif CheckForEndGame.check_for_loss(@board.board_state) == 'draw'
                 Displayer.print_message(@draw_message)
@@ -68,7 +68,7 @@ class Controller
             end
             get_ai_move('o')
             if CheckForEndGame.check_for_loss(@board.board_state) == 'loss'
-                puts 'win'
+                puts 'YOU LOSE. BOW TO MY COMPUTER MIGHT.'
                 break
             elsif CheckForEndGame.check_for_loss(@board.board_state) == 'draw'
                 Displayer.print_message(@draw_message)
