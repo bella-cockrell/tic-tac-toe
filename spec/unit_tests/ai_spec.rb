@@ -2,9 +2,9 @@ require_relative "../../lib/ai.rb"
 
 describe AI do
     context "when x is about to win in a row" do
-        child_board = {[["x", "x", " "], [" ", " ", " "], [" ", " ", " "]] => [0, 2],
-                       [["o", " ", " "], ["x", "x", " "], [" ", "o", " "]] => [1, 2],
-                       [["x", "x", " "], [" ", "o", "o"], [" ", "x", " "]] => [1, 0]
+        child_board = {[["x", " ", " "], [" ", " ", " "], [" ", " ", " "]] => [1, 1],
+                       [[" ", " ", " "], [" ", " ", " "], [" ", " ", "x"]] => [1, 1],
+                       [["x", "o", "x"], [" ", "o", " "], ["o", "x", "x"]] => [1, 2]
                 }
         it "adds an o to block" do
             #arrange
@@ -118,6 +118,14 @@ describe AI do
             child_board = [[" ", "o", " "], [" ", "o", " "], [" ", "o", " "]]
             processsed_value = ai_input.move_value_calculator(child_board, [2,1])
             expect(processsed_value).to eq(1) 
+        end
+    end
+    context "when the AI checks the value of a losing move" do
+        it "returns -1" do
+            ai_input = AI.new
+            child_board = [["x", "x", "x"], [" ", " ", " "], [" ", " ", " "]]
+            processsed_value = ai_input.move_value_calculator(child_board, [0,2])
+            expect(processsed_value).to eq(-1) 
         end
     end
 end
