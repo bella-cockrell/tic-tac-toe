@@ -22,4 +22,9 @@ class InputController
         return move
     end
 
+    def end_game_input
+    end_input = @player_input.receive_player_input
+    @input_validator.end_game_input(end_input)
+    end
+
 end

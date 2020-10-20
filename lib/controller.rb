@@ -4,7 +4,7 @@ require_relative "./check_for_endgame"
 
 class Controller
 
-    attr_accessor :welcome_message, :invalid_input_message, :your_move_message, :move_already_made_message, :draw_message
+    attr_accessor :reset_message, :welcome_message, :invalid_input_message, :your_move_message, :move_already_made_message, :draw_message
 
     def initialize(input_controller, board, ai_input)
         @welcome_message = "Welcome to the game, type 'start' to begin.\n"
@@ -12,6 +12,7 @@ class Controller
         @your_move_message = "Your move\n"
         @move_already_made_message = "Move already done, input new move\n"
         @draw_message = "THE GAME IS A DRAW -- YOU CANNOT DEFEAT ME\n"
+        @reset_message = "Would you like to play again? Type 'reset' to confirm.\n"
         @board = board
         @input_controller = input_controller
         @ai_input = ai_input
@@ -75,7 +76,15 @@ class Controller
                 break
             end
         end
-    
+        
+        Displayer.print_message(@reset_message)
+        if @input_controller.end_game_input
+            @board.reset
+            game_loop
+        else
+            exit
+        end
+        
     end
 
 end

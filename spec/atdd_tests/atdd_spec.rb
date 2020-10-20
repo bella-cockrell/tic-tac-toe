@@ -124,13 +124,14 @@ describe "ATDD player move" do
             allow(double_input_controller).to receive(:input_processor).and_return([0,0], [1,1], [1,2], [0,1], [2,0])
             allow(double_ai_input).to receive(:ai_move).and_return([2,2], [0,2], [1,0], [2,1])
             allow(double_input_controller).to receive(:start_game_input).and_return(true)
+            allow(double_input_controller).to receive(:end_game_input).and_return(false)
             #Assert
             expect{controller.game_loop}.to output(/#{draw_message}/).to_stdout
         end
     end
 end
 
-xdescribe "ATDD AI" do
+describe "ATDD AI" do
     context "when the player places x in the corner or on the sides" do
         it "the ai will go in the middle" do
             #arrange
@@ -154,25 +155,35 @@ xdescribe "ATDD AI" do
             piped_board = joined_board.gsub('|','\|')
             #act
             allow(double_input_controller).to receive(:start_game_input).and_return(true)
-            allow(double_input_controller).to receive(:input_processor).and_return([0,0])
+            allow(double_input_controller).to receive(:input_processor).and_return([0,0], [1,0], [0,1])
+            allow(double_input_controller).to receive(:end_game_input).and_return(false)
             #assert
             expect{controller.game_loop}.to output(/#{piped_board}/).to_stdout
         end
     end
 end
 
-
-
-
-
-#     a     b     c  
-#        |     |     
-# 1   -  |  -  |  -  
-#   _____|_____|_____
-#        |     |     
-# 2   -  |  -  |  -  
-#   _____|_____|_____
-#        |     |     
-# 3   -  |  -  |  -  
-#        |     |     
-
+describe "ATDD Endgame" do
+    context "when the player completes a game and types 'reset'" do
+        it "the game restarts" do
+            #arrange
+            double_input_controller = double("Input_Controller")
+            board = Board.new
+            ai_player = AI.new
+            controller = Controller.new(double_input_controller, board, ai_player)
+            reset_message = controller.reset_message.gsub('?','\?')
+            joined_board = tic_tac_toe_string.join
+            piped_board = joined_board.gsub('|','\|')
+            #Act
+            allow(double_input_controller).to receive(:start_game_input).and_return(true)
+            allow(double_input_controller).to receive(:input_processor).and_return([0,0], [1,0], [0,1])
+            allow(double_input_controller).to receive(:end_game_input).and_return(true)
+            allow(double_input_controller).to receive(:start_game_input).and_return(true)
+            allow(double_input_controller).to receive(:input_processor).and_return([0,0], [1,0], [0,1])
+            allow(double_input_controller).to receive(:end_game_input).and_return(false)
+            #assert
+            expect{controller.game_loop}.to output(/#{reset_message}/).to_stdout
+            expect{controller.game_loop}.to output(/#{piped_board}/).to_stdout
+        end
+    end
+end
