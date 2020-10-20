@@ -33,10 +33,12 @@ Here is our UML diagram that illustrates how the components of the program inter
 
 
 ## Setup
-Once you have run `git clone` on the files (see Github's instructions), `cd` to the directory where you have cloned the files, then run:
+Once you have run `git clone` on the files (see Github's instructions), open up your terminal (in iTerm or VSCode), `cd` to the directory where you have cloned the files, then run:
 
 `bundle` 
 
 then 
 
 `ruby lib/main.rb`
+
+Make sure that your font it set to monospace, or the output will look strange.
