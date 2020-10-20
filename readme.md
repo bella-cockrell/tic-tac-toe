@@ -24,7 +24,7 @@ Using the discipline of TDD, build a game of tic tac toe.
 
 ## Information about the program
 
-We've coded the program in Ruby and are testing it with RSpec.
+We've coded the program in Ruby and are testing it with RSpec. For CI, we're also using Travis.
 
 Our Tic Tac Toe AI implements the Minimax algorithm and will never lose against the user. More information about Minimax can be found [here.](https://www.youtube.com/watch?v=l-hh51ncgDI)
 
