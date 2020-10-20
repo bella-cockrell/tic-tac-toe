@@ -163,27 +163,27 @@ describe "ATDD AI" do
     end
 end
 
-describe "ATDD Endgame" do
-    context "when the player completes a game and types 'reset'" do
-        it "the game restarts" do
-            #arrange
-            double_input_controller = double("Input_Controller")
-            board = Board.new
-            ai_player = AI.new
-            controller = Controller.new(double_input_controller, board, ai_player)
-            reset_message = controller.reset_message.gsub('?','\?')
-            joined_board = tic_tac_toe_string.join
-            piped_board = joined_board.gsub('|','\|')
-            #Act
-            allow(double_input_controller).to receive(:start_game_input).and_return(true)
-            allow(double_input_controller).to receive(:input_processor).and_return([0,0], [1,0], [0,1])
-            allow(double_input_controller).to receive(:end_game_input).and_return(true)
-            allow(double_input_controller).to receive(:start_game_input).and_return(true)
-            allow(double_input_controller).to receive(:input_processor).and_return([0,0], [1,0], [0,1])
-            allow(double_input_controller).to receive(:end_game_input).and_return(false)
-            #assert
-            expect{controller.game_loop}.to output(/#{reset_message}/).to_stdout
-            expect{controller.game_loop}.to output(/#{piped_board}/).to_stdout
-        end
-    end
-end
+# describe "ATDD Endgame" do
+#     context "when the player completes a game and types 'reset'" do
+#         it "the game restarts" do
+#             #arrange
+#             double_input_controller = double("Input_Controller")
+#             board = Board.new
+#             ai_player = AI.new
+#             controller = Controller.new(double_input_controller, board, ai_player)
+#             reset_message = controller.reset_message.gsub('?','\?')
+#             joined_board = tic_tac_toe_string.join
+#             piped_board = joined_board.gsub('|','\|')
+#             #Act
+#             allow(double_input_controller).to receive(:start_game_input).and_return(true)
+#             allow(double_input_controller).to receive(:input_processor).and_return([0,0], [1,0], [0,1])
+#             allow(double_input_controller).to receive(:end_game_input).and_return(true)
+#             allow(double_input_controller).to receive(:start_game_input).and_return(true)
+#             allow(double_input_controller).to receive(:input_processor).and_return([0,0], [1,0], [0,1])
+#             allow(double_input_controller).to receive(:end_game_input).and_return(false)
+#             #assert
+#             expect{controller.game_loop}.to output(/#{reset_message}/).to_stdout
+#             expect{controller.game_loop}.to output(/#{piped_board}/).to_stdout
+#         end
+#     end
+# end

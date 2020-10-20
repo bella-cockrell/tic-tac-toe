@@ -12,6 +12,7 @@ class Controller
         @your_move_message = "Your move\n"
         @move_already_made_message = "Move already done, input new move\n"
         @draw_message = "THE GAME IS A DRAW -- YOU CANNOT DEFEAT ME\n"
+        @lose_message = "YOU HAVE LOST AGAINST ME -- BOW TO MY SUPERIOR INTELLECT!\n"
         @reset_message = "Would you like to play again? Type 'reset' to confirm.\n"
         @board = board
         @input_controller = input_controller
@@ -61,7 +62,7 @@ class Controller
         while true
             player_move('x')
             if CheckForEndGame.check_for_loss(@board.board_state) == 'loss'
-                puts 'YOU WON :('
+                raise "This is never meant to happen"
                 break
             elsif CheckForEndGame.check_for_loss(@board.board_state) == 'draw'
                 Displayer.print_message(@draw_message)
@@ -69,7 +70,7 @@ class Controller
             end
             get_ai_move('o')
             if CheckForEndGame.check_for_loss(@board.board_state) == 'loss'
-                puts 'YOU LOSE. BOW TO MY COMPUTER MIGHT.'
+                Displayer.print_message(@lose_message) 
                 break
             elsif CheckForEndGame.check_for_loss(@board.board_state) == 'draw'
                 Displayer.print_message(@draw_message)
@@ -82,7 +83,7 @@ class Controller
             @board.reset
             game_loop
         else
-            exit
+#exit but not exiting the tests
         end
         
     end
